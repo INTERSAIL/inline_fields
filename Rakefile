@@ -14,9 +14,3 @@ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-load 'rails/tasks/engine.rake'
-
-
-
-Bundler::GemHelper.install_tasks
-

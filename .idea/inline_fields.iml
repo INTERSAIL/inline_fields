@@ -11,6 +11,13 @@
         <RAILS_FACET_CONFIG_ID NAME="RAILS_FACET_APPLICATION_ROOT" VALUE="$MODULE_DIR$" />
       </configuration>
     </facet>
+    <facet type="gem" name="Gem">
+      <configuration>
+        <option name="GEM_APP_ROOT_PATH" value="" />
+        <option name="GEM_APP_TEST_PATH" value="" />
+        <option name="GEM_APP_LIB_PATH" value="" />
+      </configuration>
+    </facet>
   </component>
   <component name="ModuleRunConfigurationManager">
     <configuration default="false" name="test: inline_fields" type="RakeRunConfigurationType" factoryName="Rake">
