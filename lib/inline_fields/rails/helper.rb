@@ -1,8 +1,11 @@
 module ActionView
   module Helpers
     class FormBuilder
-      def inline_fields_for(association, name_link_to_add = nil)
-        res = self.fields_for association.to_sym do |row|
+      def inline_fields_for(association, options = {})
+        name_link_to_add = options.is_a?(String) ? options : options.delete(:add_link_name)
+        res = options.key?(:headers) ? self.inline_headers(association, options.delete(:headers)) : ''
+
+        res += self.fields_for association.to_sym do |row|
           template.render("#{association.to_s}/#{association.to_s.singularize}_inline_fields", f: row )
         end
         if name_link_to_add
@@ -18,6 +21,20 @@ module ActionView
           template.render("#{association.to_s}/#{association.to_s.singularize}_inline_fields", f: builder)
         end
         template.link_to(name, '#', class: 'add_fields', data: {id: id, fields: fields.gsub("\n", '')})
+      end
+
+      def inline_headers(association, titles, options={})
+        template.content_tag(:div, class:"row row-header #{html_class(options)}") do
+          titles.each do |title, opts|
+            k = opts.to_s
+
+            if title.to_s == '_actions'
+              template.concat template.content_tag(:div, template.raw('&nbsp'), class: k)
+            else
+              template.concat template.content_tag(:div, template.t("activerecord.attributes.#{association.to_s.singularize}.#{title}", default: title.to_s.titleize), class: k)
+            end
+          end
+        end
       end
 
       def inline_input(name, options = {})
