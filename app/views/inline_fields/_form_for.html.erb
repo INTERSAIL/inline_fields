@@ -1,8 +1,9 @@
 <% p = eval("@#{parent}") %>
 <% c = eval("@#{child}") %>
 
-<%= simple_form_for(p ? [p, c] : c, method: :post) do |f| %>
+<%= simple_form_for(c, url: '', method: :post) do |f| %>
     <%= f.error_notification %>
 
     <%= render "#{child.pluralize}/#{child}_fields", f: f %>
+    <%= hidden_field_tag(:id, c.id) if (c && !c.new_record?) %>
 <% end %>

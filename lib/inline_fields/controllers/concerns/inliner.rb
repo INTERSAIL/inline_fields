@@ -2,7 +2,7 @@ module Inliner
   extend ActiveSupport::Concern
 
   included do
-    before_action :set_parent, only: [:index, :new, :create, :form_for_update]
+    before_action :set_inline_parent, only: [:index, :new, :create, :form_for, :form_for_update]
     before_action :set_object_from_params, only: [:form_for, :form_for_update]
   end
 
@@ -37,8 +37,9 @@ module Inliner
     end
   end
 
-  def set_parent
+  def set_inline_parent
     parent_id = params["#{self.class.inline_parent}_id".to_sym]
+    parent_id ||= eval("#{self.class.inline_child}_params[:#{self.class.inline_parent}_id]")
     instance_variable_set("@#{self.class.inline_parent}", self.class.inline_parent.camelize.constantize.find(parent_id)) if parent_id
   end
 
