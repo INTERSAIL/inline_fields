@@ -1,0 +1,35 @@
+.inline-row{
+  margin-bottom: 1px;
+}
+
+.row-remove{
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-danger;
+}
+
+.row-edit{
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-primary;
+}
+
+.row-data{
+  @extend  .col-xs-11;
+}
+
+.row-actions{
+  @extend  .col-xs-1;
+  padding: 0;
+}
+
+.destroyed{
+  .row-data *{
+    text-decoration: line-through;
+    color: lightgray;
+  }
+}
+
+span[data-json="1"] {
+  display:none;
+}

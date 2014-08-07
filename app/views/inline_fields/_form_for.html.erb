@@ -1,0 +1,8 @@
+<% p = eval("@#{parent}") %>
+<% c = eval("@#{child}") %>
+
+<%= simple_form_for(p ? [p, c] : c, method: :post) do |f| %>
+    <%= f.error_notification %>
+
+    <%= render "#{child.pluralize}/#{child}_fields", f: f %>
+<% end %>

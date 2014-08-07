@@ -1,0 +1,1 @@
+<%= fields_for_child parent.camelize.constantize, child.pluralize.to_sym, eval("@#{child}")%>
